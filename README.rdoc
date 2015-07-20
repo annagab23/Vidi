@@ -1,0 +1,10 @@
+== README
+
+Login and password to vidispine server have to be stored in config/access_data.ini file. Please, never add it to git.
+Structure of the file:
+{
+  "username": "USERNAME HERE",
+  "password": "PASSWORD HERE"
+}
+
+To be continued...
