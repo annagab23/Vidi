@@ -11,6 +11,7 @@ Rails.application.routes.draw do
      resources :collections do
        member do
          post 'add_item', as: 'add_item'
+         get 'delete_item/:item_id' => 'collections#delete_item', as: 'delete_item'
        end
 
      end

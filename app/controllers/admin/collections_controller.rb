@@ -14,6 +14,13 @@ class Admin::CollectionsController < Admin::BaseController
     redirect_to admin_collection_path(params[:id])
   end
 
+  def delete_item
+    binding.pry
+    client = Vidispine::API::Client.new
+    client.collection_object_remove({"collection_id": params[:id], "object_id": params[:item_id], "type": 'item'})
+    redirect_to admin_collection_path(params[:id])
+  end
+
   def new
   end
 
