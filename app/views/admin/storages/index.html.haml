@@ -1,0 +1,31 @@
+%h1 Listing items
+.row
+  .col-lg-9
+    %table.table.table-striped
+      %tr
+        %th
+          id
+        %th
+          state
+        %th
+          type
+        %th
+          capacity
+        %th
+          freeCapacity
+        %th
+          timestamp
+      - @storages.each do |storage|
+        %tr
+          %td
+            =link_to storage['id'], admin_storage_path(storage['id'])
+          %td
+            =storage['state']
+          %td
+            =storage['type']
+          %td
+            =storage['capacity']
+          %td
+            =storage['freeCapacity']
+          %td
+            =storage['timestamp']

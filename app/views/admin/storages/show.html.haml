@@ -1,0 +1,64 @@
+Storage
+=@storage['id']
+%p
+  state:
+  =@storage['state']
+%p
+  type:
+  =@storage['type']
+%p
+  capacity:
+  =@storage['capacity']
+%p
+  freeCapacity:
+  =@storage['freeCapacity']
+%p
+  timestamp:
+  =@storage['timestamp']
+%p
+  lowWatermark:
+  =@storage['lowWatermark']
+%p
+  highWatermark:
+  =@storage['highWatermark']
+%p
+  autoDetect:
+  =@storage['autoDetect']
+%p
+  showImportables:
+  =@storage['showImportables']
+
+
+Methods
+%table.table.table-striped
+  %tr
+    %th
+      id
+    %th
+      uri
+    %th
+      read
+    %th
+      write
+    %th
+      browse
+    %th
+      lastSuccess
+    %th
+      type
+  -@storage['method'].each do |method|
+    %tr
+      %td
+        =method['id']
+      %td
+        =method['uri']
+      %td
+        =method['read']
+      %td
+        =method['write']
+      %td
+        =method['browse']
+      %td
+        =method['lastSuccess']
+      %td
+        =method['type']
