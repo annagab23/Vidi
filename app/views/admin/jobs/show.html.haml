@@ -1,0 +1,42 @@
+Showing job:
+=@job['jobId']
+%p
+  user:
+  =@job['user']
+%p
+  started
+  =@job['started']
+%p
+  status
+  =@job['status']
+%p
+  type
+  =@job['type']
+%p
+  priority
+  =@job['priority']
+
+%table.table.table-striped
+  %tr
+    %th
+      step
+    %th
+      attempts
+    %th
+      status
+    %th
+      timestamp
+    %th
+      description
+  -@job['log']['task'].each do |task|
+    %tr
+      %td
+        =task['step']
+      %td
+        =task['attempts']
+      %td
+        =task['status']
+      %td
+        =task['timestamp']
+      %td
+        =task['description']
