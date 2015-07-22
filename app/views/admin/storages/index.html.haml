@@ -1,4 +1,4 @@
-%h1 Listing items
+%h1 Listing storages
 .row
   .col-lg-9
     %table.table.table-striped
@@ -15,6 +15,7 @@
           freeCapacity
         %th
           timestamp
+        %th
       - @storages.each do |storage|
         %tr
           %td
@@ -29,3 +30,5 @@
             =storage['freeCapacity']
           %td
             =storage['timestamp']
+          %td
+            = link_to "Delete", admin_storage_path(storage['id']), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }

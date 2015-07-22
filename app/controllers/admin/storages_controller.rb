@@ -6,7 +6,11 @@ class Admin::StoragesController < Admin::BaseController
   end
 
   def show
-    @storage  = CLIENT.storage_get({'id': params[:id]})
+    @storage  = CLIENT.storage_get({'storage_id': params[:id]})
+  end
+
+  def destroy
+    CLIENT.storage_delete({"storage_id": params[:id]})
   end
 
 end
