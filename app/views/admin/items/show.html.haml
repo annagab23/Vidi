@@ -1,10 +1,48 @@
 =@item['id']
-=@metadata
+
+%hr
+Metadata
+-@metadata['item'].each do |item|
+  =item['metadata']['revesion']
+  -item['metadata']['timespan'].each do |timespan|
+    %table.table.table-striped
+      %tr
+        %th
+          name
+        %th
+          value
+        %th
+          uuid
+        %th
+          user
+        %th
+          timestamp
+        %th
+          change
+      -timespan['field'].each do |field|
+        %tr
+          %td
+            =field['name']
+          %td
+            =field['value']
+          %td
+            =field['uuid']
+          %td
+            =field['user']
+          %td
+            =field['timestamp']
+          %td
+            =field['change']
+
+
+
 
 %hr
 SHAPES:
 =@shapes
 
+%hr
+Transcode
 =simple_form_for 'job', url: transcode_admin_item_path(@item['id']), method: 'post' do |f|
-  =f.input :tag, as: :text
+  =f.input :tag, as: :select, collection: @tags
   =f.submit

@@ -9,6 +9,7 @@ class Admin::ItemsController < Admin::BaseController
     @item = CLIENT.item_get({'item_id': params[:id]})
     @metadata = CLIENT.item_metadata_get({'item_id': params[:id]})
     @shapes = CLIENT.item_shapes_get({'item_id': params[:id]})
+    @tags = CLIENT.get_shape_tags['uri']
   end
 
   def new
