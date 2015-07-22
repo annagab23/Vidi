@@ -738,7 +738,6 @@ module Vidispine
             :http_path => 'storage/#{path_arguments[:storage_id]}/method',
             :parameters => [
               { :name => :storage_id, :aliases => [ :id ], :send_in => :path, :required => true },
-
               { :name => :read, :send_in => :matrix },
               { :name => :write, :send_in => :matrix },
               { :name => :browse, :send_in => :matrix },
@@ -782,6 +781,33 @@ module Vidispine
         process_request(_request, options)
       end
       alias :storages :storages_get
+
+      def create_storage(args = { }, options = { })
+        creds = JSON.load(File.read('config/access_data.ini'))
+        uri = URI.parse("http://site.contentdistrict.io:8080/API/storage")
+        req = Net::HTTP::Post.new(uri.path)
+        req.basic_auth(creds['username'], creds['password'])
+        req["Content-Type"] = "application/xml"
+        req.body = "<StorageDocument xmlns='http://xml.vidispine.com/schema/vidispine'>
+                      <type>LOCAL</type>
+                      <capacity>#{args[:capacity]}</capacity>
+                      <method>
+                        <uri>#{args[:uri]}</uri>
+                        <read>true</read>
+                        <write>true</write>
+                        <browse>true</browse>
+                      </method>
+                      <lowWatermarkPercent>90</lowWatermarkPercent>
+                      <highWatermarkPercent>75</highWatermarkPercent>
+                      <showImportables>true</showImportables>
+                    </StorageDocument>"
+        http_prot = Net::HTTP.new(uri.host, uri.port)
+        response = http_prot.request(req)
+        return response
+      end
+
+
+
 
       def get_shape_tags(args = { }, options = { })
         _request = Requests::BaseRequest.new(args, {http_path: 'shape-tag'}.merge(options))
