@@ -629,10 +629,10 @@ module Vidispine
         process_request(_request, options)
       end
 
-      
+
       def storage_file_copy(args = { }, options = { })
         _request = Requests::BaseRequest.new(
-          args, 
+          args,
           {
             :http_path => 'storage/#{path_arguments[:source_storage_id]}/file/#{path_argumetns[:file_id]}/storage/#{path_arguments[:target_source_id]}',
             :http_method => :post,
@@ -640,7 +640,7 @@ module Vidispine
               { :name => :file_id, :send_in => :path, :required => true },
               { :name => :source_storage_id, :send_in => :path, :required => true },
               { :name => :target_storage_id, :send_in => :path, :required => true },
-              
+
               :move,
               :filename,
               :timeDependency,
@@ -654,7 +654,7 @@ module Vidispine
         )
         process_request(_request, options)
       end
-      
+
       # @note UNDOCUMENTED API METHOD
       # @param [Hash] args
       # @option args [String] :storage_id (Required)
@@ -782,6 +782,12 @@ module Vidispine
         process_request(_request, options)
       end
       alias :storages :storages_get
+
+      def get_shape_tags(args = { }, options = { })
+        _request = Requests::BaseRequest.new(args, {http_path: 'shape-tag'}.merge(options))
+        process_request(_request, options)
+      end
+
 
       # @!endgroup API Endpoints
       # ############################################################################################################## #
