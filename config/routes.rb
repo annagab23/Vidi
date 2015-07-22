@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   namespace :admin do
+    root 'base#dashboard'
      resources :items do
        collection do
          post 'import_uri', as: 'import_uri'
+       end
+       member do
+         post :transcode
        end
      end
      resources :collections do
@@ -20,7 +24,7 @@ Rails.application.routes.draw do
        end
      end
 
-     resources :storages 
+     resources :storages
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,12 +1,11 @@
 class Admin::JobsController < Admin::BaseController
 
   def index
-    response = CLIENT.jobs_get
-    @jobs = response['job']
+    @jobs = CLIENT.jobs_get['job']
   end
 
   def show
-    @job  = CLIENT.job_get({'job_id': params[:id]})
+    @job = CLIENT.job_get({'job_id': params[:id]})
   end
 
   def abort_job

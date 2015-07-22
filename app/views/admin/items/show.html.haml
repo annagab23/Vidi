@@ -1,2 +1,6 @@
 =@item['id']
 =@metadata
+
+=simple_form_for 'job', url: transcode_admin_item_path(@item['id']), method: 'post' do |f|
+  =f.input :tag, as: :text
+  =f.submit
