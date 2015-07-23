@@ -24,7 +24,7 @@ Metadata
           %td
             =field['name']
           %td
-            =field['value']
+            =field['value'].first['value']
           %td
             =field['uuid']
           %td
@@ -34,12 +34,38 @@ Metadata
           %td
             =field['change']
 
-
-
-
 %hr
 SHAPES:
-=@shapes
+%table.table.table-striped
+  %tr
+    %th
+      id
+    %th
+      tag
+    %th
+      mimeType
+    %th
+      format
+    %th
+      uri
+    %th
+      size
+  -@shapes.each do |field|
+    %tr
+      %td
+        =field['id']
+      %td
+        =field['tag']
+      %td
+        =field['mimeType']
+      %td
+        =field['containerComponent']['format']
+      %td
+        =field['containerComponent']['file'].first['uri']
+      %td
+        =field['containerComponent']['file'].first['size']
+
+
 
 %hr
 Transcode

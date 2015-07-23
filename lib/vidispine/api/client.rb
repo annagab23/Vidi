@@ -806,14 +806,21 @@ module Vidispine
         return response
       end
 
-
-
-
       def get_shape_tags(args = { }, options = { })
         _request = Requests::BaseRequest.new(args, {http_path: 'shape-tag'}.merge(options))
         process_request(_request, options)
       end
 
+      def shape_tag_create(tag_name, body)
+        creds = JSON.load(File.read('config/access_data.ini'))
+        uri = URI.parse("http://site.contentdistrict.io:8080/API/shape-tag/#{tag_name}")
+        req = Net::HTTP::Put.new(uri.path, initheader = { 'Content-Type' => 'application/xml'})
+        req.basic_auth(creds['username'], creds['password'])
+        req.body = body
+        http_prot = Net::HTTP.new(uri.host, uri.port)
+        response = http_prot.request(req)
+        return response
+      end
 
       # @!endgroup API Endpoints
       # ############################################################################################################## #

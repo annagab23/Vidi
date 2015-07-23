@@ -8,7 +8,10 @@ class Admin::ItemsController < Admin::BaseController
   def show
     @item = CLIENT.item_get({'item_id': params[:id]})
     @metadata = CLIENT.item_metadata_get({'item_id': params[:id]})
-    @shapes = CLIENT.item_shapes_get({'item_id': params[:id]})
+    @shapes = []
+    CLIENT.item_shapes_get({'item_id': params[:id]})['uri'].each do |shape|
+      @shapes << CLIENT.item_shape_get({'item_id': params[:id], 'shape_id': shape})
+    end
     @tags = CLIENT.get_shape_tags['uri']
   end
 

@@ -1,0 +1,12 @@
+%h1 Listing shape tags
+=link_to 'new tag', new_admin_shape_tag_path
+.row
+  .col-lg-9
+    %table.table.table-striped
+      %tr
+        %th
+          id
+      - @tags.each do |tag|
+        %tr
+          %td
+            =tag
