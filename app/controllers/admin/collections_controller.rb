@@ -13,7 +13,6 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def delete_item
-    binding.pry
     CLIENT.collection_object_remove({"collection_id": params[:id], "object_id": params[:item_id], "type": 'item'})
     redirect_to admin_collection_path(params[:id])
   end

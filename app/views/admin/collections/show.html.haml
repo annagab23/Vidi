@@ -3,8 +3,21 @@ Collection:
 %br
 Items
 -@items.each do |item|
-  =item
+  =item['id']
   =link_to "remove from collection", delete_item_admin_collection_path(@collection['id'], item['id'])
 %br
 Metadata
-=@metadata
+-@metadata['timespan'].each do |timespan|
+  %table.table.table-striped
+    %tr
+      %th
+        name
+      %th
+        value
+
+    -timespan['field'].each do |field|
+      %tr
+        %td
+          =field['name']
+        %td
+          =field['value'].first['value']

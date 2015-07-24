@@ -1,4 +1,4 @@
 =simple_form_for 'collection', url: add_item_admin_collection_path(@collection_id), method: 'post' do |f|
   =f.input :object_id
-  =f.input :type, as: :select, collection: ['item']
+  =f.input :type, as: :select, collection: ['item', 'collection', 'library']
   =f.submit
