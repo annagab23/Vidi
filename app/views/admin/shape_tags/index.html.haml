@@ -9,4 +9,4 @@
       - @tags.each do |tag|
         %tr
           %td
-            =tag
+            =link_to tag, admin_shape_tag_path(tag)

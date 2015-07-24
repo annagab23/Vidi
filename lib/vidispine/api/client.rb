@@ -822,10 +822,16 @@ module Vidispine
         return response
       end
 
+      def get_shape_tag(args = { }, options = { })
+        _request = Requests::BaseRequest.new(args, {http_path: "shape-tag/#{args[:tag_name]}"}.merge(options))
+        process_request(_request, options)
+      end
+
       # @!endgroup API Endpoints
       # ############################################################################################################## #
 
       # Client
+
     end
 
     # API

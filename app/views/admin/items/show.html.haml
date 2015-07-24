@@ -61,9 +61,9 @@ SHAPES:
       %td
         =field['containerComponent']['format']
       %td
-        =field['containerComponent']['file'].first['uri']
+        =field['containerComponent']['file'].first['uri'] if field['containerComponent']['file']
       %td
-        =field['containerComponent']['file'].first['size']
+        =field['containerComponent']['file'].first['size'] if field['containerComponent']['file']
 
 
 
