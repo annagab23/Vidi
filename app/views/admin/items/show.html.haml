@@ -3,7 +3,6 @@
 %hr
 Metadata
 -@metadata['item'].each do |item|
-  =item['metadata']['revesion']
   -item['metadata']['timespan'].each do |timespan|
     %table.table.table-striped
       %tr
@@ -11,29 +10,13 @@ Metadata
           name
         %th
           value
-        %th
-          uuid
-        %th
-          user
-        %th
-          timestamp
-        %th
-          change
+
       -timespan['field'].each do |field|
         %tr
           %td
             =field['name']
           %td
             =field['value'].first['value']
-          %td
-            =field['uuid']
-          %td
-            =field['user']
-          %td
-            =field['timestamp']
-          %td
-            =field['change']
-
 %hr
 SHAPES:
 %table.table.table-striped

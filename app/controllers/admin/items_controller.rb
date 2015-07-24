@@ -41,8 +41,4 @@ class Admin::ItemsController < Admin::BaseController
     redirect_to admin_item_path(params[:id])
   end
 
-
-
-
-
 end
