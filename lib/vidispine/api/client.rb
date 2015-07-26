@@ -827,6 +827,37 @@ module Vidispine
         process_request(_request, options)
       end
 
+      def metadata_field_create(field_name, field_type)
+        creds = JSON.load(File.read('config/access_data.ini'))
+        uri = URI.parse("http://site.contentdistrict.io:8080/API/metadata-field/#{field_name}")
+        req = Net::HTTP::Put.new(uri.path, initheader = { 'Content-Type' => 'application/xml'})
+        req.basic_auth(creds['username'], creds['password'])
+        req.body = "<MetadataFieldDocument xmlns='http://xml.vidispine.com/schema/vidispine'><name>#{field_name}</name><type>#{field_type}</type></MetadataFieldDocument>"
+        http_prot = Net::HTTP.new(uri.host, uri.port)
+        response = http_prot.request(req)
+        return response
+      end
+
+      def metadata_field_group_create(group_name)
+        creds = JSON.load(File.read('config/access_data.ini'))
+        uri = URI.parse("http://site.contentdistrict.io:8080/API/metadata-field/field-group/#{group_name}")
+        req = Net::HTTP::Put.new(uri.path)
+        req.basic_auth(creds['username'], creds['password'])
+        http_prot = Net::HTTP.new(uri.host, uri.port)
+        response = http_prot.request(req)
+        return response
+      end
+
+      def metadata_field_add_to_group(group_name, field_name)
+        creds = JSON.load(File.read('config/access_data.ini'))
+        uri = URI.parse("http://site.contentdistrict.io:8080/API/metadata-field/field-group/#{group_name}/#{field_name}")
+        req = Net::HTTP::Put.new(uri.path)
+        req.basic_auth(creds['username'], creds['password'])
+        http_prot = Net::HTTP.new(uri.host, uri.port)
+        response = http_prot.request(req)
+        return response
+      end
+
       # @!endgroup API Endpoints
       # ############################################################################################################## #
 

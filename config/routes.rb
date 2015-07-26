@@ -24,6 +24,7 @@ Rails.application.routes.draw do
        end
      end
 
+     resources :metadata_fields
      resources :storages
      resources :shape_tags
   end
