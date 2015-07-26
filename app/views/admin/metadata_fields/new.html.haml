@@ -1,0 +1,8 @@
+=simple_form_for 'field', url: admin_metadata_fields_path, method: 'post' do |f|
+  =f.input :name, placeholder: "season_name"
+  =f.input :type, as: :select, collection: ['date', 'float', 'integer', 'string', 'boolean', 'timecode']
+  =f.submit
+
+=simple_form_for 'group', url: admin_metadata_fields_path, method: 'post' do |f|
+  =f.input :name, placeholder: "group_name"
+  =f.submit

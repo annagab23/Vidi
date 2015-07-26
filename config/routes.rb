@@ -24,7 +24,12 @@ Rails.application.routes.draw do
        end
      end
 
-     resources :metadata_fields
+     resources :metadata_fields do
+       member do
+         post :add_field_to_group
+       end
+     end
+
      resources :storages
      resources :shape_tags
   end

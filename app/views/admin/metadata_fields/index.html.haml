@@ -1,0 +1,28 @@
+%h1 Listing fields
+=link_to "new field or group", new_admin_metadata_field_path
+.row
+  .col-lg-9
+    %table.table.table-striped
+      %tr
+        %th
+          name
+        %th
+          type
+      -@fields.each do |f|
+        %tr
+          %td
+            = link_to f['name'], admin_metadata_field_path(f['name'])
+          %td
+            = f['type']
+
+%h1 Listing groups
+.row
+  .col-lg-9
+    %table.table.table-striped
+      %tr
+        %th
+          name
+      -@groups.each do |f|
+        %tr
+          %td
+            = f['name']

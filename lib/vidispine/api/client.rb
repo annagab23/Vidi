@@ -519,7 +519,7 @@ module Vidispine
         _request = Requests::BaseRequest.new(
           args,
           {
-            :http_path => 'metadata/#{arguments[:field_name]}',
+            :http_path => "metadata-field/#{args[:field_name]}",
             :http_method => :delete,
             :parameters => [
               { :name => :field_name, :aliases => [ :name ], :send_in => :path }
@@ -534,7 +534,7 @@ module Vidispine
         _request = Requests::BaseRequest.new(
           args,
           {
-            :http_path => 'metadata/#{arguments[:field_name]}',
+            :http_path => "/metadata-field/#{args[:field_name]}",
             :parameters => [
               { :name => :field_name, :aliases => [ :name ], :send_in => :path }
             ]
