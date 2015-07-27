@@ -1,5 +1,4 @@
-
-
+%h3 Add this field to group
 =simple_form_for 'field', url: add_field_to_group_admin_metadata_field_path(@metadata_field['name']), method: 'post' do |f|
   =f.input :group, as: :select, collection: @groups
   =f.submit

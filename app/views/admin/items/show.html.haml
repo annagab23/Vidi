@@ -30,8 +30,6 @@ SHAPES:
     %th
       format
     %th
-      uri
-    %th
       size
   -@shapes.each do |field|
     %tr
@@ -44,14 +42,12 @@ SHAPES:
       %td
         =field['containerComponent']['format']
       %td
-        =field['containerComponent']['file'].first['uri'] if field['containerComponent']['file']
-      %td
         =field['containerComponent']['file'].first['size'] if field['containerComponent']['file']
 
 
 
 %hr
-Transcode
+%h3 Create new transcode job
 =simple_form_for 'job', url: transcode_admin_item_path(@item['id']), method: 'post' do |f|
   =f.input :tag, as: :select, collection: @tags
   =f.submit

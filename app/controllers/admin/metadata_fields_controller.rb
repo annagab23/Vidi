@@ -15,13 +15,16 @@ class Admin::MetadataFieldsController < ApplicationController
     @groups.flatten!
   end
 
+  def destroy
+    CLIENT.metadata_field_delete({field_name: params[:id]})
+    redirect_to admin_metadata_fields_path
+  end
+
   def create
     if params[:field] then
       CLIENT.metadata_field_create(params[:field][:name], params[:field][:type])
-      binding.pry
     end
     if params[:group] then
-      binding.pry
       CLIENT.metadata_field_group_create(params[:group][:name])
     end
     redirect_to admin_metadata_fields_path

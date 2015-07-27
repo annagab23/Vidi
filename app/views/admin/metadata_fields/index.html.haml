@@ -14,6 +14,8 @@
             = link_to f['name'], admin_metadata_field_path(f['name'])
           %td
             = f['type']
+          %td
+            = link_to "delete", admin_metadata_field_path(f['name']), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }
 
 %h1 Listing groups
 .row

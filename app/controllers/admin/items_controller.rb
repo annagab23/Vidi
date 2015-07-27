@@ -30,6 +30,8 @@ class Admin::ItemsController < Admin::BaseController
 
   def edit
     @item_id = params[:id]
+    @metadata_fields = CLIENT.metadata_fields_get['field']
+    @metadata_groups = CLIENT.metadata_field_groups_get['group']
   end
 
   def update
