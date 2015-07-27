@@ -1,5 +1,4 @@
 %h3 Edit item
-=binding.pry
 =simple_form_for 'item', url: admin_item_path(@item_id), method: 'put' do |f|
   =f.input :metadata_document, as: :text
   =f.submit
