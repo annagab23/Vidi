@@ -1,4 +1,10 @@
 %h3 Edit item
 =simple_form_for 'item', url: admin_item_path(@item_id), method: 'put' do |f|
-  =f.input :metadata_document, as: :text
+  -@metadata_groups.each do |mg|
+    %h2
+      ="Group #{mg['name']}"
+    =f.simple_fields_for mg['name'] do |sf|
+      -if CLIENT.metadata_field_group_fields({'group_name': mg['name']})['field'] then
+        -CLIENT.metadata_field_group_fields({'group_name': mg['name']})['field'].map {|f| f['name']}.each do |field|
+          =sf.input "#{field}", required: false
   =f.submit

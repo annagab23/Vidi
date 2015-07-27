@@ -1,4 +1,4 @@
-class Admin::MetadataFieldsController < ApplicationController
+class Admin::MetadataFieldsController < Admin::BaseController
 
   def index
     @fields = CLIENT.metadata_fields_get['field']

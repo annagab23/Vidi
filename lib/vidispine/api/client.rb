@@ -229,9 +229,22 @@ module Vidispine
       alias :item_metadata :item_metadata_get
 
       # @see http://apidoc.vidispine.com/4.2/ref/metadata/metadata.html#add-a-metadata-change-set
+      #def item_metadata_set(args = { })
+      #  process_request_using_class(Requests::ItemMetadataSet, args, options)
+      #end
+
       def item_metadata_set(args = { }, options = { })
-        process_request_using_class(Requests::ItemMetadataSet, args, options)
+        binding.pry
+        creds = JSON.load(File.read('config/access_data.ini'))
+        uri = URI.parse("http://site.contentdistrict.io:8080/API/item/#{args[:item_id]}/metadata")
+        req = Net::HTTP::Put.new(uri.path, initheader = { 'Content-Type' => 'application/xml'})
+        req.basic_auth(creds['username'], creds['password'])
+        req.body = args[:metadata_document]
+        http_prot = Net::HTTP.new(uri.host, uri.port)
+        response = http_prot.request(req)
+        return response
       end
+
 
       # @see http://apidoc.vidispine.com/4.2/ref/item/shape.html#get-files-for-shape
       def item_shape_files_get(args = { }, options = { })
@@ -857,6 +870,18 @@ module Vidispine
         response = http_prot.request(req)
         return response
       end
+
+      def metadata_field_group_fields(args = { }, options = { })
+        group_name = args.is_a?(String) ? args : begin
+          _data = Requests::BaseRequest.process_parameters([ { :name => :group_name, :aliases => [ :id ] } ], args)
+          _args = _data[:arguments_out]
+          _args[:group_name]
+        end
+        http(:get, "/metadata-field/field-group/#{group_name}")
+      end
+
+
+
 
       # @!endgroup API Endpoints
       # ############################################################################################################## #

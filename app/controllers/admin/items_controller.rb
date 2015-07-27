@@ -30,13 +30,29 @@ class Admin::ItemsController < Admin::BaseController
 
   def edit
     @item_id = params[:id]
-    @metadata_fields = CLIENT.metadata_fields_get['field']
     @metadata_groups = CLIENT.metadata_field_groups_get['group']
   end
 
   def update
-    response = CLIENT.item_metadata_set({'item_id': params[:id], 'metadata_document': params[:metadata_document]})
+    body = "<MetadataDocument xmlns='http://xml.vidispine.com/schema/vidispine'><timespan start='-INF' end='+INF'>"
+    params[:item].keys.each do |group|
+      if params[:item][group].map { | key, value | value }.sum != ""
+        body << "<group mode='add'><name>#{group}</name>"
+        params[:item][group].each do |field|
+          if field.last != ""
+            body << "<field><name>#{field.first}</name><value>#{field.last}</value></field>"
+          end
+        end
+        body << "</group>"
+      end
+    end
+    body << "</timespan></MetadataDocument>"
+    response = CLIENT.item_metadata_set({'item_id': params[:id], 'metadata_document': body})
+    redirect_to admin_item_path(params[:id])
   end
+
+
+
 
   def transcode
     CLIENT.item_transcode({'item_id': params[:id], 'tag': params[:job][:tag]})
