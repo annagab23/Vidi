@@ -2,6 +2,7 @@
 
 %hr
 Metadata
+-binding.pry
 -@metadata['item'].each do |item|
   -item['metadata']['timespan'].each do |timespan|
     %table.table.table-striped
@@ -17,6 +18,13 @@ Metadata
             =field['name']
           %td
             =field['value'].first['value']
+      -timespan['group'].each do |group|
+        %tr
+          %td
+            =group['field'].first['name']
+          %td
+            =group['field'].first['value'].first['value']
+
 %hr
 SHAPES:
 %table.table.table-striped
