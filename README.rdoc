@@ -7,4 +7,7 @@ Structure of the file:
   "password": "PASSWORD HERE"
 }
 
-To be continued...
+Next, after deploy you have to create initial user by 'rake viddashboard:create_user' command.
+You can specify login and password in lib/tasks/users.rake file.
+
+Next, you can login by visit /admin path. 

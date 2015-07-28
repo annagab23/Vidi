@@ -13,4 +13,4 @@
             = link_to item['id'], admin_item_path(item['id'])
           %td
             = link_to "Delete", admin_item_path(item['id']), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }
-            = link_to 'Edit', edit_admin_item_path(item['id'])
+            = link_to 'Add metadata', edit_admin_item_path(item['id'])

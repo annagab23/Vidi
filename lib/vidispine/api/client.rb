@@ -234,7 +234,6 @@ module Vidispine
       #end
 
       def item_metadata_set(args = { }, options = { })
-        binding.pry
         creds = JSON.load(File.read('config/access_data.ini'))
         uri = URI.parse("http://site.contentdistrict.io:8080/API/item/#{args[:item_id]}/metadata")
         req = Net::HTTP::Put.new(uri.path, initheader = { 'Content-Type' => 'application/xml'})
